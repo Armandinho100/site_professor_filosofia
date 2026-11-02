@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prof. Elber Alves | Filosofia para Pré-Vestibular</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Playfair Display (Serif Elegante) & Inter (Sans Didática) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#2A1710',     /* Marrom Escuro Nobre */
+                            medium: '#422417',   /* Marrom Secundário */
+                            wine: '#6B1119',     /* Vermelho Vinho */
+                            wineDark: '#4A0B11', /* Vinho Profundo */
+                            gold: '#C5A059',     /* Dourado Elegante */
+                            goldLight: '#E5C483',/* Dourado Suave */
+                            cream: '#FAF6F0',    /* Bege / Creme */
+                            cardBg: '#FFFFFF'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FAF6F0;
+            color: #2A1710;
+        }
+        .text-gold-gradient {
+            background: linear-gradient(135deg, #E5C483 0%, #C5A059 50%, #9A7B38 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bg-wine-gradient {
+            background: linear-gradient(135deg, #6B1119 0%, #4A0B11 100%);
+        }
+        .border-gold-subtle {
+            border-color: rgba(197, 160, 89, 0.3);
+        }
+        .gold-shadow {
+            box-shadow: 0 10px 30px -10px rgba(197, 160, 89, 0.2);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-wine selection:text-white">
+
+    <!-- BARRA NAVEGAÇÃO SUPERIOR -->
+    <nav class="sticky top-0 z-50 bg-brand-dark/95 backdrop-blur-md border-b border-brand-gold/20 text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full border border-brand-gold flex items-center justify-center bg-brand-wine text-brand-gold font-serif font-bold text-xl group-hover:scale-105 transition-transform">
+                    E
+                </div>
+                <div>
+                    <span class="font-serif font-bold text-lg text-white block tracking-wide">Prof. Elber Alves</span>
+                    <span class="text-xs text-brand-gold block font-light">Filosofia Pré-Vestibular</span>
+                </div>
+            </a>
+
+            <!-- Links Desktop -->
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-brand-cream/90">
+                <a href="#pilares" class="hover:text-brand-gold transition-colors">Os 4 Pilares</a>
+                <a href="#sobre" class="hover:text-brand-gold transition-colors">Sobre o Professor</a>
+                <a href="#memes" class="hover:text-brand-gold transition-colors">Aprenda com Memes</a>
+                <a href="#aulas" class="hover:text-brand-gold transition-colors">Modalidades</a>
+            </div>
+
+            <!-- Botão CTA Nav -->
+            <a href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Gostaria%20de%20saber%20mais%20sobre%20as%20aulas%20de%20filosofia." 
+               target="_blank" 
+               class="inline-flex items-center gap-2 bg-brand-gold hover:bg-brand-goldLight text-brand-dark font-semibold px-4 py-2.5 rounded-full text-sm transition-all duration-300 shadow-lg shadow-brand-gold/10 hover:scale-105">
+                <i class="fa-brands me-1 text-base"></i> Agendar Aula
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-brand-dark text-white overflow-hidden py-16 lg:py-24 border-b border-brand-gold/20">
+        <!-- Detalhes decorativos de fundo -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-brand-wine blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-brand-gold blur-3xl"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-wine/50 border border-brand-gold/40 text-brand-gold text-xs font-semibold tracking-wider uppercase">
+                        <i class="fa-solid fa-graduation-cap"></i> Preparação de Alto Nível
+                    </div>
+                    
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white leading-tight">
+                        Filosofia sem complicação para passar no <span class="text-gold-gradient">vestibular</span>.
+                    </h1>
+                    
+                    <p class="text-base sm:text-lg text-brand-cream/80 font-light max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Domine os conteúdos mais cobrados no ENEM e vestibulares de forma estratégica, didática e leve. Uma jornada de aprendizado pensada para garantir a sua aprovação.
+                    </p>
+
+                    <!-- Botões de Ação Hero -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Vim%20pelo%20site%20e%20quero%20informa%C3%A7%C3%B5es%20sobre%20as%20aulas." 
+                           target="_blank"
+                           class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-brand-wine hover:bg-brand-wineDark text-white border border-brand-gold/30 px-7 py-3.5 rounded-xl font-semibold text-base transition-all shadow-xl shadow-brand-wine/30 hover:scale-105">
+                            <i class="fa-brands fa-whatsapp text-xl text-green-400"></i>
+                            Falar pelo WhatsApp
+                        </a>
+
+                        <a href="https://www.instagram.com/filosoficalmeme.br" 
+                           target="_blank"
+                           class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white/5 hover:bg-white/10 text-brand-cream border border-brand-gold/30 px-6 py-3.5 rounded-xl font-medium text-base transition-all">
+                            <i class="fa-brands fa-instagram text-xl text-pink-400"></i>
+                            @filosoficalmeme.br
+                        </a>
+                    </div>
+
+                    <!-- Garantias / Badges -->
+                    <div class="pt-6 grid grid-cols-3 gap-4 border-t border-white/10 text-center lg:text-left">
+                        <div>
+                            <span class="block text-xl font-bold font-serif text-brand-gold">UFMA</span>
+                            <span class="text-xs text-brand-cream/60">Formação Acadêmica</span>
+                        </div>
+                        <div>
+                            <span class="block text-xl font-bold font-serif text-brand-gold">4 Áreas</span>
+                            <span class="text-xs text-brand-cream/60">Foco Total na Prova</span>
+                        </div>
+                        <div>
+                            <span class="block text-xl font-bold font-serif text-brand-gold">Online / Presencial</span>
+                            <span class="text-xs text-brand-cream/60">São Luís e Todo Brasil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card com Imagem Destacada -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <!-- Moldura dourada -->
+                        <div class="absolute -inset-1.5 bg-gradient-to-r from-brand-gold via-brand-wine to-brand-gold rounded-2xl blur opacity-40"></div>
+                        
+                        <div class="relative rounded-2xl overflow-hidden border-2 border-brand-gold/40 shadow-2xl bg-brand-medium">
+                            <img src="elber.jpeg" 
+                                 alt="Professor Elber Alves Ferreira em sala de aula" 
+                                 onerror="this.src='C:/Users/Ana Claudia/Documents/site HTML/elber/elber.jpeg'"
+                                 class="w-full h-auto object-cover max-h-[480px] aspect-[4/5] object-top">
+                            
+                            <div class="p-4 bg-brand-dark/90 backdrop-blur-sm border-t border-brand-gold/30">
+                                <p class="text-xs text-brand-gold font-medium uppercase tracking-wider">Metodologia ativa</p>
+                                <p class="text-sm text-white font-serif">Prof. Elber Ferreira em sala: descomplicando Aristóteles e a Política.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO: OS 4 PILARES DA FILOSOFIA NO VESTIBULAR -->
+    <section id="pilares" class="py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-brand-wine text-xs font-bold uppercase tracking-widest bg-brand-wine/10 px-3 py-1 rounded-full border border-brand-wine/20">Foco nas Provas</span>
+            <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-dark mt-3">Os 4 Pilares no Vestibular</h2>
+            <p class="text-brand-medium/80 mt-3 text-base">
+                A maioria das questões de vestibular e ENEM se concentram em quatro grandes domínios. Domine cada um deles com clareza.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <!-- Pilar 1: Epistemologia -->
+            <div class="bg-white rounded-2xl p-8 border border-brand-gold/30 shadow-sm hover:shadow-xl transition-all duration-300 relative group overflow-hidden">
+                <div class="w-12 h-12 rounded-xl bg-brand-wine/10 border border-brand-wine/20 text-brand-wine flex items-center justify-center text-xl font-bold mb-6 group-hover:bg-brand-wine group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-brand-dark mb-3 flex items-center justify-between">
+                    Epistemologia
+                    <span class="text-xs font-sans text-brand-gold bg-brand-dark px-2.5 py-1 rounded-md">Conhecimento</span>
+                </h3>
+                <p class="text-brand-medium/80 text-sm leading-relaxed mb-4">
+                    Estudo da origem, limites e natureza do conhecimento humano. Compreenda a passagem do Mito ao Logos, o Racionalismo, o Empirismo e a visão de Kant.
+                </p>
+                <div class="text-xs text-brand-wine font-semibold flex items-center gap-2">
+                    <i class="fa-solid fa-check text-brand-gold"></i> Sócrates, Platão, Descartes, Locke e Kant.
+                </div>
+            </div>
+
+            <!-- Pilar 2: Ética -->
+            <div class="bg-white rounded-2xl p-8 border border-brand-gold/30 shadow-sm hover:shadow-xl transition-all duration-300 relative group overflow-hidden">
+                <div class="w-12 h-12 rounded-xl bg-brand-wine/10 border border-brand-wine/20 text-brand-wine flex items-center justify-center text-xl font-bold mb-6 group-hover:bg-brand-wine group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-brand-dark mb-3 flex items-center justify-between">
+                    Ética
+                    <span class="text-xs font-sans text-brand-gold bg-brand-dark px-2.5 py-1 rounded-md">Valores & Moral</span>
+                </h3>
+                <p class="text-brand-medium/80 text-sm leading-relaxed mb-4">
+                    Reflexão sobre as condutas humanas, deveres e justiça. Entenda a Ética das Virtudes aristotélica, o Imperativo Categórico kantiano e o Utilitarismo.
+                </p>
+                <div class="text-xs text-brand-wine font-semibold flex items-center gap-2">
+                    <i class="fa-solid fa-check text-brand-gold"></i> Aristóteles, Kant, Nietzsche e Utilitaristas.
+                </div>
+            </div>
+
+            <!-- Pilar 3: Política -->
+            <div class="bg-white rounded-2xl p-8 border border-brand-gold/30 shadow-sm hover:shadow-xl transition-all duration-300 relative group overflow-hidden">
+                <div class="w-12 h-12 rounded-xl bg-brand-wine/10 border border-brand-wine/20 text-brand-wine flex items-center justify-center text-xl font-bold mb-6 group-hover:bg-brand-wine group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-landmark"></i>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-brand-dark mb-3 flex items-center justify-between">
+                    Política
+                    <span class="text-xs font-sans text-brand-gold bg-brand-dark px-2.5 py-1 rounded-md">Estado & Sociedade</span>
+                </h3>
+                <p class="text-brand-medium/80 text-sm leading-relaxed mb-4">
+                    Organização do poder, cidadania e direitos. Domine os Contratualistas (Hobbes, Locke, Rousseau), Maquiavel, Escola de Frankfurt e teorias de Redação.
+                </p>
+                <div class="text-xs text-brand-wine font-semibold flex items-center gap-2">
+                    <i class="fa-solid fa-check text-brand-gold"></i> Maquiavel, Hobbes, Rousseau, Arendt e Foucault.
+                </div>
+            </div>
+
+            <!-- Pilar 4: Estética -->
+            <div class="bg-white rounded-2xl p-8 border border-brand-gold/30 shadow-sm hover:shadow-xl transition-all duration-300 relative group overflow-hidden">
+                <div class="w-12 h-12 rounded-xl bg-brand-wine/10 border border-brand-wine/20 text-brand-wine flex items-center justify-center text-xl font-bold mb-6 group-hover:bg-brand-wine group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-palette"></i>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-brand-dark mb-3 flex items-center justify-between">
+                    Estética
+                    <span class="text-xs font-sans text-brand-gold bg-brand-dark px-2.5 py-1 rounded-md">Arte & Belo</span>
+                </h3>
+                <p class="text-brand-medium/80 text-sm leading-relaxed mb-4">
+                    Investigação sobre a arte, a beleza e a sensibilidade cultural. Entenda o conceito de Indústria Cultural e a recepção da arte na sociedade moderna.
+                </p>
+                <div class="text-xs text-brand-wine font-semibold flex items-center gap-2">
+                    <i class="fa-solid fa-check text-brand-gold"></i> Platão, Kant, Adorno e Horkheimer.
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SEÇÃO: SOBRE O PROFESSOR -->
+    <section id="sobre" class="bg-brand-dark text-white py-20 border-y border-brand-gold/20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Imagem Pessoal / Formação -->
+                <div class="lg:col-span-5 order-2 lg:order-1">
+                    <div class="relative max-w-sm mx-auto">
+                        <div class="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-brand-wine to-brand-gold opacity-50 blur"></div>
+                        <div class="relative bg-brand-medium p-3 rounded-2xl border border-brand-gold/40">
+                            <img src="elber.jpeg" 
+                                 alt="Professor Elber Alves Ferreira - Graduado UFMA" 
+                                 onerror="this.src='C:/Users/Ana Claudia/Documents/site HTML/elber/elber.jpeg'"
+                                 class="w-full h-auto rounded-xl object-cover shadow-lg aspect-[4/5] object-top">
+                            
+                            <div class="mt-4 p-3 bg-brand-dark/90 rounded-lg text-center border border-brand-gold/20">
+                                <h4 class="font-serif font-bold text-brand-gold text-base">Prof. Elber Alves Ferreira</h4>
+                                <p class="text-xs text-brand-cream/70">Licenciado em Filosofia & Pesquisador</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Biografia Didática -->
+                <div class="lg:col-span-7 order-1 lg:order-2 space-y-6">
+                    <span class="text-brand-gold text-xs font-bold uppercase tracking-widest bg-brand-wine/40 px-3 py-1 rounded-full border border-brand-gold/30">
+                        Trajetória Acadêmica
+                    </span>
+                    
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white">
+                        Ensino de Filosofia focado na sua aprovação
+                    </h2>
+
+                    <p class="text-brand-cream/90 text-base leading-relaxed">
+                        Olá! Sou o <strong class="text-brand-gold">Professor Elber Alves Ferreira</strong>. Minha trajetória é marcada pela paixão pelo ensino e pelo compromisso em transformar temas complexos da filosofia em um conhecimento prático e acessível.
+                    </p>
+
+                    <!-- Lista de Credenciais -->
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-brand-gold/20">
+                            <div class="text-brand-gold text-2xl pt-1">
+                                <i class="fa-solid fa-building-columns"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-white text-base">Graduação em Filosofia</h4>
+                                <p class="text-xs text-brand-cream/70">Universidade Federal do Maranhão (UFMA)</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-brand-gold/20">
+                            <div class="text-brand-gold text-2xl pt-1">
+                                <i class="fa-solid fa-book-bookmark"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-white text-base">Pós-Graduando em Cultura e Sociedade</h4>
+                                <p class="text-xs text-brand-cream/70">Programa de Pós-Graduação em Cultura e Sociedade (PGCULT / UFMA)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-brand-cream/80 text-sm leading-relaxed italic border-l-2 border-brand-gold pl-4 py-1">
+                        "Entender os pensadores clássicos e contemporâneos não precisa ser um fardo. Quando conectamos a filosofia à realidade dos vestibulandos, a aprendizagem se torna natural e a nota alta é consequência."
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO: RECURSO PEDAGÓGICO DE MEMES (@filosoficalmeme.br) -->
+    <section id="memes" class="py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-gradient-to-r from-brand-wine to-brand-wineDark text-white rounded-3xl p-8 sm:p-12 border border-brand-gold/30 shadow-2xl relative overflow-hidden">
+            
+            <!-- Elemento decorativo de fundo -->
+            <div class="absolute -right-12 -bottom-12 opacity-10 text-9xl text-white pointer-events-none">
+                <i class="fa-solid fa-icons"></i>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+                <div class="lg:col-span-8 space-y-5">
+                    <span class="bg-brand-gold text-brand-dark font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider inline-block">
+                        <i class="fa-solid fa-lightbulb me-1"></i> Metodologia Leve & Divertida
+                    </span>
+
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white">
+                        Memes como Recurso Pedagogico
+                    </h2>
+
+                    <p class="text-brand-cream/90 text-base leading-relaxed">
+                        Estudar filosofia também pode ser divertido! No perfil <strong class="text-brand-gold font-semibold">@filosoficalmeme.br</strong>, transformamos conceitos densos de Aristóteles, Kant ou Nietzsche em memes descontraídos para facilitar a fixação do conteúdo durante as revisões.
+                    </p>
+
+                    <ul class="space-y-2 text-sm text-brand-cream/80">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check text-brand-gold"></i> Associe teorias difíceis a situações do cotidiano.
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check text-brand-gold"></i> Revise a matéria rapidamente no seu feed do Instagram.
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check text-brand-gold"></i> Conteúdo pedagógico preparado por quem entende da prova.
+                        </li>
+                    </ul>
+
+                    <div class="pt-4">
+                        <a href="https://www.instagram.com/filosoficalmeme.br" 
+                           target="_blank" 
+                           class="inline-flex items-center gap-3 bg-brand-gold hover:bg-brand-goldLight text-brand-dark px-6 py-3.5 rounded-xl font-bold text-base transition-all shadow-lg hover:scale-105">
+                            <i class="fa-brands fa-instagram text-xl"></i>
+                            Conhecer a página de Memes
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card de Chamada Instagram -->
+                <div class="lg:col-span-4 flex justify-center">
+                    <a href="https://www.instagram.com/filosoficalmeme.br" target="_blank" class="block w-full max-w-xs group">
+                        <div class="bg-white text-brand-dark rounded-2xl p-6 shadow-xl border-2 border-brand-gold/50 group-hover:scale-105 transition-transform text-center space-y-4">
+                            <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 p-1">
+                                <div class="w-full h-full bg-white rounded-full flex items-center justify-center text-2xl text-brand-wine">
+                                    <i class="fa-solid fa-quote-left"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg font-serif">@filosoficalmeme.br</h3>
+                                <p class="text-xs text-brand-medium/70 mt-1">Aprenda a teoria rindo dos dilemas existenciais.</p>
+                            </div>
+                            <span class="inline-block text-xs font-bold text-brand-wine underline group-hover:text-brand-wineDark">
+                                Seguir no Instagram <i class="fa-solid fa-arrow-right text-xs ms-1"></i>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO: MODALIDADES DE AULAS -->
+    <section id="aulas" class="py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-brand-wine text-xs font-bold uppercase tracking-widest bg-brand-wine/10 px-3 py-1 rounded-full border border-brand-wine/20">Formatos de Atendimento</span>
+            <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-dark mt-3">Como Podemos Estudar Juntos?</h2>
+            <p class="text-brand-medium/80 mt-3 text-base">
+                Escolha a modalidade que melhor se adapta à sua rotina de estudos para o vestibular.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <!-- Modalidade 1: A Domicílio -->
+            <div class="bg-white rounded-2xl p-8 border border-brand-gold/30 shadow-md hover:border-brand-gold transition-all">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-dark text-brand-gold flex items-center justify-center text-2xl font-bold">
+                        <i class="fa-solid fa-house-user"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold text-brand-dark">Aulas a Domicílio</h3>
+                        <p class="text-xs text-brand-wine font-semibold">São Luís - MA e Região</p>
+                    </div>
+                </div>
+                
+                <p class="text-brand-medium/80 text-sm leading-relaxed mb-6">
+                    Atendimento particular e exclusivo no conforto da sua casa. Ideal para quem prefere o contato presencial e um acompanhamento individualizado.
+                </p>
+
+                <ul class="space-y-3 text-sm text-brand-medium mb-8">
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-check text-brand-gold"></i> Plano de estudo focado nas suas dificuldades.
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-check text-brand-gold"></i> Resolução guiada de questões de exames anteriores.
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-check text-brand-gold"></i> Flexibilidade de horários.
+                    </li>
+                </ul>
+
+                <a href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Tenho%20interesse%20em%20aulas%20a%20domic%C3%ADlio." 
+                   target="_blank" 
+                   class="block text-center bg-brand-dark hover:bg-brand-medium text-white font-semibold py-3 px-6 rounded-xl transition-colors text-sm">
+                    Consultar Disponibilidade Presencial
+                </a>
+            </div>
+
+            <!-- Modalidade 2: EaD / Online -->
+            <div class="bg-white rounded-2xl p-8 border border-brand-gold/30 shadow-md hover:border-brand-gold transition-all">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-wine text-white flex items-center justify-center text-2xl font-bold">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold text-brand-dark">Aulas EaD / Online</h3>
+                        <p class="text-xs text-brand-wine font-semibold">Para todo o Brasil</p>
+                    </div>
+                </div>
+
+                <p class="text-brand-medium/80 text-sm leading-relaxed mb-6">
+                    Aulas ao vivo pela internet com quadro interativo e materiais digitais inclusos. Praticidade para estudar de onde você estiver.
+                </p>
+
+                <ul class="space-y-3 text-sm text-brand-medium mb-8">
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-check text-brand-gold"></i> Encontros individuais ou em pequenas turmas.
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-check text-brand-gold"></i> Material didático em PDF disponibilizado.
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-check text-brand-gold"></i> Suporte para dúvidas via WhatsApp.
+                    </li>
+                </ul>
+
+                <a href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Tenho%20interesse%20em%20aulas%20online." 
+                   target="_blank" 
+                   class="block text-center bg-brand-wine hover:bg-brand-wineDark text-white font-semibold py-3 px-6 rounded-xl transition-colors text-sm">
+                    Agendar Aula Online
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- RODAPÉ E CONTATO -->
+    <footer class="bg-brand-dark text-white border-t border-brand-gold/30 pt-16 pb-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 pb-12 border-b border-white/10">
+                
+                <!-- Coluna 1: Nome e Resumo -->
+                <div class="md:col-span-5 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full border border-brand-gold flex items-center justify-center bg-brand-wine text-brand-gold font-serif font-bold text-xl">
+                            E
+                        </div>
+                        <span class="font-serif font-bold text-xl text-white">Prof. Elber Alves</span>
+                    </div>
+                    <p class="text-sm text-brand-cream/70 leading-relaxed max-w-sm">
+                        Especialista no ensino de Filosofia focado em pré-vestibular e ENEM. Graduado pela UFMA e pós-graduando no PGCULT/UFMA.
+                    </p>
+                </div>
+
+                <!-- Coluna 2: Links Rápidos -->
+                <div class="md:col-span-3 space-y-3">
+                    <h4 class="font-serif font-bold text-brand-gold text-base">Navegação</h4>
+                    <ul class="space-y-2 text-sm text-brand-cream/70">
+                        <li><a href="#pilares" class="hover:text-brand-gold transition-colors">Os 4 Pilares</a></li>
+                        <li><a href="#sobre" class="hover:text-brand-gold transition-colors">Sobre o Professor</a></li>
+                        <li><a href="#memes" class="hover:text-brand-gold transition-colors">Recurso com Memes</a></li>
+                        <li><a href="#aulas" class="hover:text-brand-gold transition-colors">Aulas e Modalidades</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 3: Contatos Direct -->
+                <div class="md:col-span-4 space-y-3">
+                    <h4 class="font-serif font-bold text-brand-gold text-base">Canais de Contato</h4>
+                    <div class="space-y-3 text-sm text-brand-cream/80">
+                        <a href="https://wa.me/5598988551783" target="_blank" class="flex items-center gap-3 hover:text-brand-gold transition-colors">
+                            <i class="fa-brands fa-whatsapp text-lg text-green-400"></i>
+                            (98) 98855-1783
+                        </a>
+                        <a href="https://www.instagram.com/filosoficalmeme.br" target="_blank" class="flex items-center gap-3 hover:text-brand-gold transition-colors">
+                            <i class="fa-brands fa-instagram text-lg text-pink-400"></i>
+                            @filosoficalmeme.br
+                        </a>
+                        <div class="flex items-center gap-3 text-brand-cream/60">
+                            <i class="fa-solid fa-location-dot text-lg text-brand-gold"></i>
+                            São Luís - Maranhão
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Direitos autorais -->
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-brand-cream/50 gap-4">
+                <p>&copy; 2026 Professor Elber Alves Ferreira. Todos os direitos reservados.</p>
+                <p>Filosofia para Pré-Vestibular & ENEM</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
