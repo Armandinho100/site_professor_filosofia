@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prof. Elber Alves | Filosofia para Pré-Vestibular</title>
+    <meta name="description" content="Aulas de Filosofia para ENEM e vestibulares, em São Luís (MA) e online para todo o Brasil. Com o Prof. Elber Alves, graduado pela UFMA.">
+    <meta name="theme-color" content="#2A1710">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%236B1119'/%3E%3Ccircle cx='32' cy='32' r='29' fill='none' stroke='%23C5A059' stroke-width='2'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='32' font-weight='700' text-anchor='middle' fill='%23C5A059'%3EE%3C/text%3E%3C/svg%3E">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome icons -->
@@ -57,13 +60,145 @@
         .gold-shadow {
             box-shadow: 0 10px 30px -10px rgba(197, 160, 89, 0.2);
         }
+
+        /* ---------- base ---------- */
+        section[id] { scroll-margin-top: 4.5rem; }
+        :focus-visible { outline: 2px solid #C5A059; outline-offset: 3px; border-radius: 4px; }
+
+        /* textura de papel nas seções escuras */
+        .grain { position: relative; }
+        .grain::before {
+            content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+            opacity: .09; mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+        .grain > :not(.absolute) { position: relative; z-index: 1; }
+
+        /* ---------- navegação ---------- */
+        #nav { transition: box-shadow .3s ease; }
+        #navInner { transition: height .3s ease; }
+        #nav.nav-compact { box-shadow: 0 10px 30px -18px rgba(0,0,0,.7); }
+        #nav.nav-compact #navInner { height: 4rem; }
+        .nav-link { position: relative; padding: .25rem 0; transition: color .2s; }
+        .nav-link::after {
+            content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px;
+            background: #C5A059; transform: scaleX(0); transform-origin: left; transition: transform .3s ease;
+        }
+        .nav-link:hover::after, .nav-link.is-active::after { transform: scaleX(1); }
+        .nav-link.is-active { color: #C5A059; }
+
+        /* ---------- moeda do hero ---------- */
+        .coin-stage { perspective: 1100px; }
+        .coin-enter { animation: coinEnter 1.2s cubic-bezier(.2,.8,.2,1) both; }
+        .coin-float { animation: coinFloat 7.5s ease-in-out infinite; }
+        .coin {
+            display: block; width: 100%; aspect-ratio: 1 / 1; padding: 0; border: 0; background: none;
+            border-radius: 9999px; cursor: pointer; -webkit-tap-highlight-color: transparent;
+            transform-style: preserve-3d;
+            transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+            transition: transform .25s ease-out;
+        }
+        .coin-spin {
+            display: block; position: relative; aspect-ratio: 1 / 1;
+            border-radius: 50%; overflow: hidden;
+        }
+        .coin-spin.is-flipping { animation: coinFlip .95s cubic-bezier(.3,.7,.2,1); }
+        .coin-spin img {
+            display: block; width: 100%; height: 100%; object-fit: cover;
+            border-radius: 50%; filter: drop-shadow(0 22px 28px rgba(0,0,0,.5));
+        }
+        .coin-shine {
+            position: absolute; inset: 1%; border-radius: 9999px; pointer-events: none; opacity: 0;
+            transition: opacity .3s ease; mix-blend-mode: soft-light;
+            background: radial-gradient(circle at var(--mx, 50%) var(--my, 30%), rgba(255,236,190,.7), rgba(255,236,190,0) 50%);
+        }
+        .coin:hover .coin-shine { opacity: 1; }
+        .coin-halo {
+            position: absolute; inset: -8%; border-radius: 9999px; pointer-events: none;
+            background: radial-gradient(circle, rgba(197,160,89,.16) 0%, rgba(197,160,89,0) 65%);
+        }
+        #coinCaption > * { transition: opacity .18s ease; }
+        #coinCaption.is-swapping > * { opacity: 0; }
+        @keyframes coinEnter {
+            from { opacity: 0; transform: translateY(22px) rotateY(-70deg); }
+            to   { opacity: 1; transform: none; }
+        }
+        @keyframes coinFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+        @keyframes coinFlip {
+            0%   { transform: rotateY(0) scale(1); }
+            50%  { transform: rotateY(180deg) scale(1.06); }
+            100% { transform: rotateY(360deg) scale(1); }
+        }
+
+        /* ---------- pilares ---------- */
+        .reveal-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s ease; }
+        .reveal-panel > div { overflow: hidden; visibility: hidden; transition: visibility .35s; }
+        .reveal-panel.is-open { grid-template-rows: 1fr; }
+        .reveal-panel.is-open > div { visibility: visible; }
+        .pilar-toggle .chev { transition: transform .3s ease; }
+        .pilar-toggle[aria-expanded="true"] .chev { transform: rotate(180deg); }
+        .chip {
+            display: inline-block; font-size: .75rem; line-height: 1; padding: .5rem .75rem; border-radius: 9999px;
+            border: 1px solid rgba(197,160,89,.55); background: #FAF6F0; color: #422417;
+            transition: background-color .2s, color .2s, border-color .2s;
+        }
+        .chip:hover { background: #6B1119; border-color: #6B1119; color: #fff; }
+
+        /* ---------- quiz ---------- */
+        .quiz-card { background: #fff; color: #2A1710; border: 2px solid rgba(197,160,89,.5); border-radius: 1rem; padding: 1.5rem; box-shadow: 0 25px 50px -12px rgba(0,0,0,.35); }
+        .q-head { display: flex; justify-content: space-between; align-items: baseline; font-size: .8rem; color: #6B1119; font-weight: 600; }
+        .q-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: #2A1710; font-weight: 700; }
+        .q-bar { height: 3px; background: rgba(197,160,89,.25); border-radius: 9px; margin: .75rem 0 1.25rem; overflow: hidden; }
+        .q-bar span { display: block; height: 100%; background: #C5A059; transition: width .4s ease; }
+        .q-quote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.25rem; line-height: 1.5; margin-bottom: 1.25rem; min-height: 4.5rem; }
+        .q-options { display: grid; gap: .5rem; }
+        .q-opt {
+            display: flex; align-items: center; justify-content: space-between; gap: .5rem; width: 100%; text-align: left;
+            padding: .7rem 1rem; border: 1px solid rgba(197,160,89,.55); border-radius: .75rem; background: #FAF6F0;
+            font-size: .9rem; font-weight: 500; color: #2A1710; cursor: pointer;
+            transition: background-color .2s, border-color .2s, color .2s, transform .15s, opacity .2s;
+        }
+        .q-opt:hover:not(:disabled) { background: #fff; border-color: #C5A059; transform: translateX(2px); }
+        .q-opt:disabled { cursor: default; }
+        .q-opt.is-right { background: #ecf5ee; border-color: #2f7d4b; color: #1d4d2f; }
+        .q-opt.is-wrong { background: #f8e9ea; border-color: #6B1119; color: #6B1119; }
+        .q-opt.is-dim { opacity: .5; }
+        .q-feedback { margin-top: 1rem; font-size: .85rem; line-height: 1.55; color: #422417; min-height: 3.9rem; }
+        .q-next, .q-cta, .q-again {
+            display: inline-flex; align-items: center; justify-content: center; gap: .5rem; border-radius: .75rem;
+            font-size: .85rem; font-weight: 600; padding: .7rem 1.25rem; cursor: pointer; border: 0; transition: background-color .2s;
+        }
+        .q-next, .q-cta { background: #6B1119; color: #fff; }
+        .q-next:hover, .q-cta:hover { background: #4A0B11; }
+        .q-again { background: transparent; color: #6B1119; border: 1px solid rgba(107,17,25,.35); }
+        .q-again:hover { background: #FAF6F0; }
+        .q-result { text-align: center; padding: .5rem 0; }
+        .q-score { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 700; color: #6B1119; line-height: 1; }
+        .q-msg { margin: .75rem auto 1.25rem; max-width: 22rem; font-size: .9rem; line-height: 1.55; color: #422417; }
+        .q-actions { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; }
+
+        /* ---------- botão flutuante ---------- */
+        .wa-float {
+            position: fixed; right: 1rem; bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); z-index: 55;
+            opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity .3s ease, transform .3s ease;
+        }
+        .wa-float.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+        .wa-float .wa-label { max-width: 0; opacity: 0; overflow: hidden; white-space: nowrap; transition: max-width .35s ease, opacity .25s ease; }
+        .wa-float:hover .wa-label, .wa-float:focus-visible .wa-label { max-width: 11rem; opacity: 1; }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto !important; }
+            .coin-enter, .coin-float { animation: none !important; }
+            .coin, .reveal-panel, .q-bar span, #navInner { transition: none !important; }
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-brand-wine selection:text-white">
 
     <!-- BARRA NAVEGAÇÃO SUPERIOR -->
-    <nav class="sticky top-0 z-50 bg-brand-dark/95 backdrop-blur-md border-b border-brand-gold/20 text-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <div id="progress" class="fixed top-0 left-0 h-[3px] bg-brand-gold z-[60]" style="width:0%" aria-hidden="true"></div>
+    <nav id="nav" class="sticky top-0 z-50 bg-brand-dark/95 backdrop-blur-md border-b border-brand-gold/20 text-white">
+        <div id="navInner" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="#" class="flex items-center gap-3 group">
                 <div class="w-10 h-10 rounded-full border border-brand-gold flex items-center justify-center bg-brand-wine text-brand-gold font-serif font-bold text-xl group-hover:scale-105 transition-transform">
                     E
@@ -76,23 +211,43 @@
 
             <!-- Links Desktop -->
             <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-brand-cream/90">
-                <a href="#pilares" class="hover:text-brand-gold transition-colors">Os 4 Pilares</a>
-                <a href="#sobre" class="hover:text-brand-gold transition-colors">Sobre o Professor</a>
-                <a href="#memes" class="hover:text-brand-gold transition-colors">Aprenda com Memes</a>
-                <a href="#aulas" class="hover:text-brand-gold transition-colors">Modalidades</a>
+                <a href="#pilares" class="nav-link">Os 4 Pilares</a>
+                <a href="#sobre" class="nav-link">Sobre o Professor</a>
+                <a href="#memes" class="nav-link">Aprenda com Memes</a>
+                <a href="#aulas" class="nav-link">Modalidades</a>
             </div>
 
-            <!-- Botão CTA Nav -->
-            <a href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Gostaria%20de%20saber%20mais%20sobre%20as%20aulas%20de%20filosofia." 
-               target="_blank" 
-               class="inline-flex items-center gap-2 bg-brand-gold hover:bg-brand-goldLight text-brand-dark font-semibold px-4 py-2.5 rounded-full text-sm transition-all duration-300 shadow-lg shadow-brand-gold/10 hover:scale-105">
-                <i class="fa-brands me-1 text-base"></i> Agendar Aula
-            </a>
+            <div class="flex items-center gap-3">
+                <!-- Botão CTA Nav -->
+                <a href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Gostaria%20de%20saber%20mais%20sobre%20as%20aulas%20de%20filosofia."
+                   target="_blank" rel="noopener"
+                   class="hidden sm:inline-flex items-center gap-2 bg-brand-gold hover:bg-brand-goldLight text-brand-dark font-semibold px-4 py-2.5 rounded-full text-sm transition-all duration-300 shadow-lg shadow-brand-gold/10 hover:scale-105">
+                    <i class="fa-brands fa-whatsapp text-base"></i> Agendar Aula
+                </a>
+                <!-- Menu mobile -->
+                <button id="burger" type="button" class="md:hidden w-10 h-10 rounded-full border border-brand-gold/40 text-brand-gold flex items-center justify-center" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden md:hidden border-t border-brand-gold/20 bg-brand-dark">
+            <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col text-sm font-medium text-brand-cream/90">
+                <a href="#pilares" class="py-3 border-b border-white/5">Os 4 Pilares</a>
+                <a href="#sobre" class="py-3 border-b border-white/5">Sobre o Professor</a>
+                <a href="#memes" class="py-3 border-b border-white/5">Aprenda com Memes</a>
+                <a href="#aulas" class="py-3 border-b border-white/5">Modalidades</a>
+                <a href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Gostaria%20de%20saber%20mais%20sobre%20as%20aulas%20de%20filosofia."
+                   target="_blank" rel="noopener"
+                   class="mt-4 inline-flex items-center justify-center gap-2 bg-brand-gold text-brand-dark font-semibold px-4 py-3 rounded-xl">
+                    <i class="fa-brands fa-whatsapp text-base"></i> Agendar Aula
+                </a>
+            </div>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
-    <section class="relative bg-brand-dark text-white overflow-hidden py-16 lg:py-24 border-b border-brand-gold/20">
+    <section class="grain relative bg-brand-dark text-white overflow-hidden py-16 lg:py-24 border-b border-brand-gold/20">
         <!-- Detalhes decorativos de fundo -->
         <div class="absolute inset-0 opacity-10 pointer-events-none">
             <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-brand-wine blur-3xl"></div>
@@ -149,22 +304,27 @@
                     </div>
                 </div>
 
-                <!-- Card com Imagem Destacada -->
+                <!-- Moeda do @filosoficalmeme.br -->
                 <div class="lg:col-span-5 flex justify-center">
-                    <div class="relative w-full max-w-md">
-                        <!-- Moldura dourada -->
-                        <div class="absolute -inset-1.5 bg-gradient-to-r from-brand-gold via-brand-wine to-brand-gold rounded-2xl blur opacity-40"></div>
-                        
-                        <div class="relative rounded-2xl overflow-hidden border-2 border-brand-gold/40 shadow-2xl bg-brand-medium">
-                            <img src="elber.jpeg" 
-                                 alt="Professor Elber Alves Ferreira em sala de aula" 
-                                 onerror="this.src='C:/Users/Ana Claudia/Documents/site HTML/elber/elber.jpeg'"
-                                 class="w-full h-auto object-cover max-h-[480px] aspect-[4/5] object-top">
-                            
-                            <div class="p-4 bg-brand-dark/90 backdrop-blur-sm border-t border-brand-gold/30">
-                                <p class="text-xs text-brand-gold font-medium uppercase tracking-wider">Metodologia ativa</p>
-                                <p class="text-sm text-white font-serif">Prof. Elber Ferreira em sala: descomplicando Aristóteles e a Política.</p>
+                    <div class="w-full max-w-[420px]">
+                        <div id="coinStage" class="coin-stage relative">
+                            <div class="coin-halo"></div>
+                            <div class="coin-enter">
+                                <div class="coin-float">
+                                    <button id="coin" type="button" class="coin" aria-label="Girar a moeda e ver um conceito de filosofia">
+                                        <span id="coinSpin" class="coin-spin">
+                                            <img src="logo_filosoficalmeme.jpg" width="1024" height="1024"
+                                                 alt="Moeda dourada com o busto de um filósofo de peruca usando óculos de pixel, símbolo do @filosoficalmeme.br">
+                                            <span class="coin-shine"></span>
+                                        </span>
+                                    </button>
+                                </div>
                             </div>
+                        </div>
+
+                        <div id="coinCaption" class="mt-6 min-h-[92px] rounded-xl border border-brand-gold/30 bg-brand-dark/60 px-5 py-4 text-center" aria-live="polite">
+                            <p id="coinName" class="text-xs text-brand-gold font-medium">Clique ou toque na moeda</p>
+                            <p id="coinText" class="text-sm text-white font-serif mt-1 leading-relaxed"> 👆🏽 </p>
                         </div>
                     </div>
                 </div>
@@ -200,6 +360,21 @@
                 <div class="text-xs text-brand-wine font-semibold flex items-center gap-2">
                     <i class="fa-solid fa-check text-brand-gold"></i> Sócrates, Platão, Descartes, Locke e Kant.
                 </div>
+                <button type="button" class="pilar-toggle mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark hover:text-brand-wine transition-colors" aria-expanded="false" aria-controls="p-epi">
+                    Temas que mais caem em Epistemologia <i class="fa-solid fa-chevron-down chev text-xs"></i>
+                </button>
+                <div id="p-epi" class="reveal-panel">
+                    <div>
+                        <ul class="flex flex-wrap gap-2 pt-4">
+                            <li><a class="chip" target="_blank" rel="noopener" href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Quero%20ajuda%20com%20Do%20mito%20ao%20logos.">Do mito ao logos</a></li>
+                            <li><a class="chip" target="_blank" rel="noopener" href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Quero%20ajuda%20com%20Alegoria%20da%20caverna.">Alegoria da caverna</a></li>
+                            <li><a class="chip" target="_blank" rel="noopener" href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Quero%20ajuda%20com%20Racionalismo.">Racionalismo</a></li>
+                            <li><a class="chip" target="_blank" rel="noopener" href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Quero%20ajuda%20com%20Empirismo.">Empirismo</a></li>
+                            <li><a class="chip" target="_blank" rel="noopener" href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Quero%20ajuda%20com%20Criticismo%20kantiano.">Criticismo kantiano</a></li>
+                        </ul>
+                        <p class="text-xs text-brand-medium/60 mt-3">Toque em um tema para pedir ajuda pelo WhatsApp.</p>
+                    </div>
+                </div>
             </div>
 
             <!-- Pilar 2: Ética -->
@@ -216,6 +391,20 @@
                 </p>
                 <div class="text-xs text-brand-wine font-semibold flex items-center gap-2">
                     <i class="fa-solid fa-check text-brand-gold"></i> Aristóteles, Kant, Nietzsche e Utilitaristas.
+                </div>
+                <button type="button" class="pilar-toggle mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark hover:text-brand-wine transition-colors" aria-expanded="false" aria-controls="p-eti">
+                    Temas que mais caem em Ética <i class="fa-solid fa-chevron-down chev text-xs"></i>
+                </button>
+                <div id="p-eti" class="reveal-panel">
+                    <div>
+                        <ul class="flex flex-wrap gap-2 pt-4">
+                            <li><a class="chip" target="_blank" rel="noopener" href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Quero%20ajuda%20com%20Ética%20das%20virtudes.">Ética das virtudes</a></li>
+                            <li><a class="chip" target="_blank" rel="noopener" href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Quero%20ajuda%20com%20Imperativo%20categórico.">Imperativo categórico</a></li>
+                            <li><a class="chip" target="_blank" rel="noopener" href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Quero%20ajuda%20com%20Utilitarismo.">Utilitarismo</a></li>
+                            <li><a class="chip" target="_blank" rel="noopener" href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Quero%20ajuda%20com%20Moral%20dos%20fracos%20e%20dos%20fortes.">Moral dos fracos e dos fortes</a></li>
+                        </ul>
+                        <p class="text-xs text-brand-medium/60 mt-3">Toque em um tema para pedir ajuda pelo WhatsApp.</p>
+                    </div>
                 </div>
             </div>
 
@@ -234,6 +423,21 @@
                 <div class="text-xs text-brand-wine font-semibold flex items-center gap-2">
                     <i class="fa-solid fa-check text-brand-gold"></i> Maquiavel, Hobbes, Rousseau, Arendt e Foucault.
                 </div>
+                <button type="button" class="pilar-toggle mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark hover:text-brand-wine transition-colors" aria-expanded="false" aria-controls="p-pol">
+                    Temas que mais caem em Política <i class="fa-solid fa-chevron-down chev text-xs"></i>
+                </button>
+                <div id="p-pol" class="reveal-panel">
+                    <div>
+                        <ul class="flex flex-wrap gap-2 pt-4">
+                            <li><a class="chip" target="_blank" rel="noopener" href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Quero%20ajuda%20com%20Contratualismo.">Contratualismo</a></li>
+                            <li><a class="chip" target="_blank" rel="noopener" href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Quero%20ajuda%20com%20Estado%20de%20natureza.">Estado de natureza</a></li>
+                            <li><a class="chip" target="_blank" rel="noopener" href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Quero%20ajuda%20com%20Maquiavel%20e%20o%20poder.">Maquiavel e o poder</a></li>
+                            <li><a class="chip" target="_blank" rel="noopener" href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Quero%20ajuda%20com%20Banalidade%20do%20mal.">Banalidade do mal</a></li>
+                            <li><a class="chip" target="_blank" rel="noopener" href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Quero%20ajuda%20com%20Poder%20e%20disciplina.">Poder e disciplina</a></li>
+                        </ul>
+                        <p class="text-xs text-brand-medium/60 mt-3">Toque em um tema para pedir ajuda pelo WhatsApp.</p>
+                    </div>
+                </div>
             </div>
 
             <!-- Pilar 4: Estética -->
@@ -251,13 +455,27 @@
                 <div class="text-xs text-brand-wine font-semibold flex items-center gap-2">
                     <i class="fa-solid fa-check text-brand-gold"></i> Platão, Kant, Adorno e Horkheimer.
                 </div>
+                <button type="button" class="pilar-toggle mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-dark hover:text-brand-wine transition-colors" aria-expanded="false" aria-controls="p-est">
+                    Temas que mais caem em Estética <i class="fa-solid fa-chevron-down chev text-xs"></i>
+                </button>
+                <div id="p-est" class="reveal-panel">
+                    <div>
+                        <ul class="flex flex-wrap gap-2 pt-4">
+                            <li><a class="chip" target="_blank" rel="noopener" href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Quero%20ajuda%20com%20Mimese%20em%20Platão.">Mimese em Platão</a></li>
+                            <li><a class="chip" target="_blank" rel="noopener" href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Quero%20ajuda%20com%20Juízo%20de%20gosto.">Juízo de gosto</a></li>
+                            <li><a class="chip" target="_blank" rel="noopener" href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Quero%20ajuda%20com%20Indústria%20cultural.">Indústria cultural</a></li>
+                            <li><a class="chip" target="_blank" rel="noopener" href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Quero%20ajuda%20com%20Cultura%20de%20massa.">Cultura de massa</a></li>
+                        </ul>
+                        <p class="text-xs text-brand-medium/60 mt-3">Toque em um tema para pedir ajuda pelo WhatsApp.</p>
+                    </div>
+                </div>
             </div>
 
         </div>
     </section>
 
     <!-- SEÇÃO: SOBRE O PROFESSOR -->
-    <section id="sobre" class="bg-brand-dark text-white py-20 border-y border-brand-gold/20">
+    <section id="sobre" class="grain bg-brand-dark text-white py-20 border-y border-brand-gold/20">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 
@@ -268,7 +486,7 @@
                         <div class="relative bg-brand-medium p-3 rounded-2xl border border-brand-gold/40">
                             <img src="elber.jpeg" 
                                  alt="Professor Elber Alves Ferreira - Graduado UFMA" 
-                                 onerror="this.src='C:/Users/Ana Claudia/Documents/site HTML/elber/elber.jpeg'"
+                                 loading="lazy"
                                  class="w-full h-auto rounded-xl object-cover shadow-lg aspect-[4/5] object-top">
                             
                             <div class="mt-4 p-3 bg-brand-dark/90 rounded-lg text-center border border-brand-gold/20">
@@ -335,13 +553,13 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-                <div class="lg:col-span-8 space-y-5">
+                <div class="lg:col-span-7 space-y-5">
                     <span class="bg-brand-gold text-brand-dark font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider inline-block">
                         <i class="fa-solid fa-lightbulb me-1"></i> Metodologia Leve & Divertida
                     </span>
 
                     <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white">
-                        Memes como Recurso Pedagogico
+                        Memes como Recurso Pedagógico
                     </h2>
 
                     <p class="text-brand-cream/90 text-base leading-relaxed">
@@ -370,24 +588,13 @@
                     </div>
                 </div>
 
-                <!-- Card de Chamada Instagram -->
-                <div class="lg:col-span-4 flex justify-center">
-                    <a href="https://www.instagram.com/filosoficalmeme.br" target="_blank" class="block w-full max-w-xs group">
-                        <div class="bg-white text-brand-dark rounded-2xl p-6 shadow-xl border-2 border-brand-gold/50 group-hover:scale-105 transition-transform text-center space-y-4">
-                            <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 p-1">
-                                <div class="w-full h-full bg-white rounded-full flex items-center justify-center text-2xl text-brand-wine">
-                                    <i class="fa-solid fa-quote-left"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-lg font-serif">@filosoficalmeme.br</h3>
-                                <p class="text-xs text-brand-medium/70 mt-1">Aprenda a teoria rindo dos dilemas existenciais.</p>
-                            </div>
-                            <span class="inline-block text-xs font-bold text-brand-wine underline group-hover:text-brand-wineDark">
-                                Seguir no Instagram <i class="fa-solid fa-arrow-right text-xs ms-1"></i>
-                            </span>
-                        </div>
-                    </a>
+                <!-- Quiz: quem disse isso? -->
+                <div class="lg:col-span-5">
+                    <div id="quiz" class="quiz-card">
+                        <noscript>
+                            <a href="https://www.instagram.com/filosoficalmeme.br" target="_blank" rel="noopener" class="q-cta">Conhecer a página de Memes</a>
+                        </noscript>
+                    </div>
                 </div>
             </div>
         </div>
@@ -535,6 +742,199 @@
             </div>
         </div>
     </footer>
+
+    <!-- WhatsApp flutuante -->
+    <a id="waFloat" class="wa-float flex items-center gap-2 bg-brand-wine text-white border border-brand-gold/50 rounded-full pl-4 pr-4 py-3 shadow-xl"
+       href="https://wa.me/5598988551783?text=Ol%C3%A1,%20Prof.%20Elber!%20Vim%20pelo%20site%20e%20quero%20informa%C3%A7%C3%B5es%20sobre%20as%20aulas."
+       target="_blank" rel="noopener" aria-label="Falar com o professor pelo WhatsApp">
+        <i class="fa-brands fa-whatsapp text-xl text-green-400"></i>
+        <span class="wa-label text-sm font-semibold">Falar com o professor</span>
+    </a>
+
+    <script>
+    (function () {
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var $ = function (s, c) { return (c || document).querySelector(s); };
+        var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+        var shuffle = function (arr) {
+            var a = arr.slice();
+            for (var i = a.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var t = a[i]; a[i] = a[j]; a[j] = t;
+            }
+            return a;
+        };
+
+        /* ---------- navegação: progresso, compactar, link ativo, menu ---------- */
+        var nav = $('#nav'), progress = $('#progress'), wa = $('#waFloat');
+        function onScroll() {
+            var y = window.scrollY;
+            var max = document.documentElement.scrollHeight - window.innerHeight;
+            progress.style.width = (max > 0 ? (y / max) * 100 : 0) + '%';
+            nav.classList.toggle('nav-compact', y > 24);
+            wa.classList.toggle('is-visible', y > 520);
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        var links = $$('.nav-link');
+        var spy = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (!e.isIntersecting) return;
+                links.forEach(function (l) {
+                    l.classList.toggle('is-active', l.getAttribute('href') === '#' + e.target.id);
+                });
+            });
+        }, { rootMargin: '-40% 0px -55% 0px' });
+        links.forEach(function (l) {
+            var s = document.getElementById(l.getAttribute('href').slice(1));
+            if (s) spy.observe(s);
+        });
+
+        var burger = $('#burger'), menu = $('#mobileMenu');
+        function setMenu(open) {
+            menu.classList.toggle('hidden', !open);
+            burger.setAttribute('aria-expanded', String(open));
+            burger.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+            burger.firstElementChild.className = open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+        }
+        burger.addEventListener('click', function () { setMenu(menu.classList.contains('hidden')); });
+        $$('a', menu).forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+
+        /* ---------- moeda ---------- */
+        var stage = $('#coinStage'), coin = $('#coin'), spin = $('#coinSpin'), cap = $('#coinCaption');
+        var concepts = [
+            { n: 'Platão', t: 'Alegoria da caverna: o que vemos pode ser só a sombra do real.' },
+            { n: 'Descartes', t: 'Penso, logo existo: a primeira certeza que resiste à dúvida.' },
+            { n: 'Locke', t: 'Tábula rasa: a mente nasce em branco e a experiência escreve nela.' },
+            { n: 'Aristóteles', t: 'Virtude é o meio-termo: nem covardia, nem temeridade.' },
+            { n: 'Maquiavel', t: 'Em O Príncipe, a política é analisada pelo que acontece de fato, não pelo que deveria ser.' },
+            { n: 'Adorno e Horkheimer', t: 'Indústria cultural: a arte vira mercadoria produzida em série.' },
+            { n: 'Hannah Arendt', t: 'Banalidade do mal: o mal pode vir de gente comum que apenas obedece.' }
+        ];
+        var corder = shuffle(concepts.map(function (_, i) { return i; })), cpos = -1, busy = false;
+
+        function setCaption(c) {
+            cap.classList.add('is-swapping');
+            setTimeout(function () {
+                $('#coinName').textContent = c.n;
+                $('#coinText').textContent = c.t;
+                cap.classList.remove('is-swapping');
+            }, reduce ? 0 : 180);
+        }
+        coin.addEventListener('click', function () {
+            if (busy) return;
+            cpos = (cpos + 1) % corder.length;
+            if (cpos === 0 && corder.length > 1) {
+                var last = corder[corder.length - 1];
+                do { corder = shuffle(corder); } while (corder[0] === last);
+            }
+            var c = concepts[corder[cpos]];
+            busy = true;
+            spin.classList.add('is-flipping');
+            setTimeout(function () { setCaption(c); }, 430);
+            spin.addEventListener('animationend', function () {
+                spin.classList.remove('is-flipping');
+                busy = false;
+            }, { once: true });
+        });
+
+        if (!reduce && window.matchMedia('(hover: hover)').matches) {
+            stage.addEventListener('pointermove', function (e) {
+                var r = coin.getBoundingClientRect();
+                var px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+                coin.style.setProperty('--ry', ((px - .5) * 16).toFixed(2) + 'deg');
+                coin.style.setProperty('--rx', ((.5 - py) * 16).toFixed(2) + 'deg');
+                coin.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+                coin.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+            });
+            stage.addEventListener('pointerleave', function () {
+                coin.style.setProperty('--rx', '0deg');
+                coin.style.setProperty('--ry', '0deg');
+            });
+        }
+
+        /* ---------- pilares ---------- */
+        $$('.pilar-toggle').forEach(function (btn) {
+            var panel = document.getElementById(btn.getAttribute('aria-controls'));
+            btn.addEventListener('click', function () {
+                var open = btn.getAttribute('aria-expanded') === 'true';
+                btn.setAttribute('aria-expanded', String(!open));
+                panel.classList.toggle('is-open', !open);
+            });
+        });
+
+        /* ---------- quiz ---------- */
+        var QUESTIONS = [
+            { q: 'Só sei que nada sei.', a: 'Sócrates', w: ['Platão', 'Aristóteles'],
+              e: 'É o ponto de partida do método socrático: reconhecer a própria ignorância para começar a investigar.' },
+            { q: 'O homem é o lobo do homem.', a: 'Hobbes', w: ['Locke', 'Rousseau'],
+              e: 'No estado de natureza hobbesiano todos competem com todos, e por isso ele defende um Estado forte, o Leviatã.' },
+            { q: 'A existência precede a essência.', a: 'Sartre', w: ['Descartes', 'Nietzsche'],
+              e: 'Para o existencialismo, ninguém nasce com um propósito pronto: nós nos definimos pelas escolhas que fazemos.' },
+            { q: 'Age apenas segundo uma máxima que possas querer que se torne lei universal.', a: 'Kant', w: ['Nietzsche', 'Stuart Mill'],
+              e: 'É o imperativo categórico: só vale a ação que você aceitaria ver virar regra para todo mundo.' },
+            { q: 'O homem nasce bom, e é a sociedade que o corrompe.', a: 'Rousseau', w: ['Hobbes', 'Maquiavel'],
+              e: 'Para Rousseau, a desigualdade e a corrupção nascem da vida em sociedade, não da natureza humana.' }
+        ];
+        var quizEl = $('#quiz'), qs, qi, score;
+
+        function startQuiz() {
+            qs = shuffle(QUESTIONS).map(function (q) {
+                return { q: q.q, a: q.a, e: q.e, opts: shuffle([q.a].concat(q.w)) };
+            });
+            qi = 0; score = 0;
+            renderQuestion();
+        }
+        function renderQuestion() {
+            var q = qs[qi], total = qs.length;
+            quizEl.innerHTML =
+                '<div class="q-head"><span class="q-title">Quem disse isso?</span><span>' + (qi + 1) + ' de ' + total + '</span></div>' +
+                '<div class="q-bar"><span style="width:' + (qi / total * 100) + '%"></span></div>' +
+                '<blockquote class="q-quote">\u201C' + q.q + '\u201D</blockquote>' +
+                '<div class="q-options">' + q.opts.map(function (o, i) {
+                    return '<button type="button" class="q-opt" data-i="' + i + '"><span>' + o + '</span><i class="fa-solid" aria-hidden="true"></i></button>';
+                }).join('') + '</div>' +
+                '<div class="q-feedback" role="status"></div>';
+            $$('.q-opt', quizEl).forEach(function (b) {
+                b.addEventListener('click', function () { answer(b); });
+            });
+        }
+        function answer(btn) {
+            var q = qs[qi], picked = q.opts[+btn.dataset.i], ok = picked === q.a;
+            if (ok) score++;
+            $$('.q-opt', quizEl).forEach(function (b) {
+                var val = q.opts[+b.dataset.i];
+                b.disabled = true;
+                if (val === q.a) { b.classList.add('is-right'); b.lastChild.classList.add('fa-check'); }
+                else if (b === btn) { b.classList.add('is-wrong'); b.lastChild.classList.add('fa-xmark'); }
+                else b.classList.add('is-dim');
+            });
+            var last = qi === qs.length - 1;
+            var fb = $('.q-feedback', quizEl);
+            fb.innerHTML = '<strong>' + (ok ? 'Isso mesmo, é ' : 'Era ') + q.a + '.</strong> ' + q.e +
+                '<div style="margin-top:.75rem"><button type="button" class="q-next">' + (last ? 'Ver resultado' : 'Próxima') + '</button></div>';
+            var next = $('.q-next', fb);
+            next.addEventListener('click', function () { if (last) showResult(); else { qi++; renderQuestion(); } });
+            next.focus({ preventScroll: true });
+        }
+        function showResult() {
+            var total = qs.length;
+            var msg = score === total ? 'Gabaritou. Você já pensa como a prova.'
+                    : score >= 3 ? 'Boa base. Os detalhes a gente afia em aula.'
+                    : 'É para isso que serve estudar. Dá para começar pelos fundamentos.';
+            var text = encodeURIComponent('Olá, Prof. Elber! Acertei ' + score + ' de ' + total + ' no quiz do site e quero informações sobre as aulas.');
+            quizEl.innerHTML =
+                '<div class="q-result"><p class="q-score">' + score + '/' + total + '</p><p class="q-msg">' + msg + '</p>' +
+                '<div class="q-actions"><a class="q-cta" target="_blank" rel="noopener" href="https://wa.me/5598988551783?text=' + text + '">' +
+                '<i class="fa-brands fa-whatsapp"></i> Falar com o professor</a>' +
+                '<button type="button" class="q-again">Jogar de novo</button></div></div>';
+            $('.q-again', quizEl).addEventListener('click', startQuiz);
+        }
+        startQuiz();
+    })();
+    </script>
 
 </body>
 </html>
